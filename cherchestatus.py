@@ -1,6 +1,8 @@
 from lic import lic
 import sys
 import csv
+# laurent.menase.roc14@gmail.com
+# a vos risque et périls
 
 donnees = []
 

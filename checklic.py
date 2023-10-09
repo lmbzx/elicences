@@ -2,6 +2,9 @@ from lic import lic
 import sys
 import csv
 
+# laurent.menase.roc14@gmail.com
+# a vos risque et périls
+
 donnees = []
 
 with open(sys.argv[1], mode='r', encoding='ISO-8859-1') as fichier_csv:

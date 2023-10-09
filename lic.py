@@ -4,6 +4,8 @@ import sys
 import configparser
 import json
 
+# laurent.menase.roc14@gmail.com
+# a vos risque et périls
 
 
 class lic:
