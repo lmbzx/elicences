@@ -76,6 +76,13 @@ Erreur lors du déplacement du fichier : [Errno 2] No such file or directory: 'l
 ```
 
 
+# le script pour generer un pdf
+- toujours le meme format de fichier csv
+```
+  # python3 ./etiq0.py tx.csv  resultat.pdf
+```
+pour le moment ca fait des planches de 10 etiquetes a 27%, je vais essayer de faire des etiquetes recadrees a 33%
+
 
  
 
