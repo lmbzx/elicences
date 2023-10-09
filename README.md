@@ -2,6 +2,7 @@
 ## dependances:
 ```
   # pip3 install beautifullsoup4
+  # pip3 install pyPDF4
 dites moi si il en manque
 ```
 ## configuration:
