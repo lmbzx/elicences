@@ -19,20 +19,21 @@ dites moi si il en manque
 ```
      "numelic;Genre;Nom;Prenom;dn;clubnum;club"
 ```
+
      - cherche chaque Prenom Nom, et affiche tous les resultats possibles, avec le club dans lequel la licence est prise
      - exemple:
 ```
 # cat t.csv
 numelic;Genre;Nom;Prenom;dn;clubnum;club
-1;M;Menase;laurent;24/01/1968;ziv
+1;M;Menase;laur;24/01/1988;ziv
 225066;M;abzki;Arthur;30/06/1991;
 1;M;ZZZZ;YYYY;29/05/1991;
 
 # python3 ./checklic.py t.csv
-1;M;Menase;laurent;24/01/1968;ziv
-0187816 M MENASE Laurent 24/01/1968 04991 ROC 14
+1;M;Menase;laurent;21/02/1988;ziv
+0187816 M MENASE Laurent 21/02/1988 04991 ROC 14
 0424654 M TEST Laire 24/01/2001
-0424243 M TOTO Toto 24/01/2017
+0424243 M TOTO Toto 21/01/2017
 225066;M;abzki;Arthur;30/06/1991;
 0225062 M ABZKI Arthur 30/06/1991
 0225063 M ABZKI Arthur 30/06/1991
@@ -45,13 +46,13 @@ numelic;Genre;Nom;Prenom;dn;clubnum;club
 ```
 # cat tx.csv
 numelic;Genre;Nom;Prenom;dn;clubnum;club
-0187816;M;Menase;laurent;24/01/1968;ziv
+0187816;M;Menase;laur;24/01/1988;ziv
 225066;M;abzki;Arthur;30/06/1991;
 0290534;M;ZZZZ;YYYY;29/05/1991;
 
 # python3 ./cherchestatus.py tx.csv
-0187816;M;MENASE;laurent;24/01/1968
-0187816 M MENASE Laurent;24/01/1968;04991 ROC 14;31/08/2024;avec IA
+0187816;M;MENASE;laur;24/01/1988
+0187816 M MENASE Laurent;24/01/1988;04991 ROC 14;31/08/2024;avec IA
 225066;M;abzki;Arthur;30/06/1991;
 0225066 M ABZKI Arthur;30/06/1991;04991 ROC 14;31/08/2024;avec IA
 0290534;M;ZZZZ;YYYY;29/05/1991;
@@ -63,7 +64,7 @@ numelic;Genre;Nom;Prenom;dn;clubnum;club
 ```
 # python3 getlic.py ./tx.csv
 python3 ./getlic.py  ./tx.csv
-0187816;M;MENASE;laurent;24/01/1968
+0187816;M;MENASE;laurent;24/01/1988
 Valeur de data-licence : 386311
 Fichier déplacé avec succès vers : lic_MENASE_laurent.pdf
 0225066;M;ABZKI;Arthur;30/06/1991
