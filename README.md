@@ -3,6 +3,10 @@
 ```
   # pip3 install beautifullsoup4
   # pip3 install pyPDF4
+  # pip3 install reportlab
+  # pip3 install PIL
+  # pip3 install PyMuPDF
+
 dites moi si il en manque
 ```
 ## configuration:
@@ -78,11 +82,12 @@ Erreur lors du déplacement du fichier : [Errno 2] No such file or directory: 'l
 
 
 # le script pour generer un pdf
-- toujours le meme format de fichier csv
+- toujours le meme format de fichier csv, apres le getlic.py
+qui nomme tous les fichiers de licence lic_nom_prenom.pdf
 ```
-  # python3 ./etiq0.py tx.csv  resultat.pdf
+  # python3 ./pdflic.py tx.csv  resultat.pdf
 ```
-pour le moment ca fait des planches de 10 etiquetes a 27%, je vais essayer de faire des etiquetes recadrees a 33%
+ca génére des planches de 10 etiquetes a 27%, en mettant une chaine de characteres plus grande et donc lisible a 27%
 
 
  
