@@ -42,6 +42,7 @@ class licent():
           print("showpage")
           this.cv.showPage()
       li=l%this.cols
+      #0 if(l<this.lignes) else 1
       #print(li)
       col=int(l/this.cols)%this.lignes
       #print(col)
