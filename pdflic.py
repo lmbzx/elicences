@@ -37,14 +37,14 @@ class licent():
     def addpage(this,b):
       this.lab=this.lab+1
       l=this.lab%this.nbpage
-      print(l)
+      #print(l)
       if this.lab>0 and l%this.nbpage==0:
           print("showpage")
           this.cv.showPage()
       li=l%this.cols
-      print(li)
+      #print(li)
       col=int(l/this.cols)%this.lignes
-      print(col)
+      #print(col)
       this.org=[this.offsety+col*this.lw,this.offsetx+li*this.lh]
       for i in b: 
         this.ajoutetext(i)
@@ -83,7 +83,7 @@ class licent():
       c.drawInlineImage(image, this.org[0]+this.scale*pos[0], this.scale*(a4[1]-pos[3])+this.org[1],width=this.scale*(pos[2]-pos[0]),height= this.scale*(pos[3]-pos[1]))
 
 def create_pdf(z,f):
-    c=licent("outpdf.pdf",.27)
+    c=licent(f,.27)
     for b in z:
        c.addpage(b)
     c.save()
