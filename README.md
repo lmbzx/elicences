@@ -1,14 +1,4 @@
 # elicences
-## juste les executables
-- des versions executables ( non testes sont disponibles dans le repertoire dist, pour les executer, remplacer "python3 macommand.py" par "macommande"
-- les executables sont:
-
-- [pdflic](https://github.com/lmbzx/elicences/raw/main/dist/pdflic)
-- [lic](https://github.com/lmbzx/elicences/raw/main/dist/lic)
-- [getlic](https://github.com/lmbzx/elicences/raw/main/dist/getlic)
-- [checklic](https://github.com/lmbzx/elicences/raw/main/dist/checklic)
-  [cherchestatus](https://github.com/lmbzx/elicences/raw/main/dist/cherchestatus)
-```
 
 ## dependances:
 ```
@@ -20,9 +10,33 @@
 
 dites moi si il en manque
 ```
-## configuration:
+## le script pour generer un pdf
+- n'utilise pas auth.ini
+### elicpdf.py
+- 2 modes, csv ou liste
+#### mode csv:
+- le fichier csv a au moins les colones Nom et Prenom, et les fichiers licence pdf s'appellent lic_{nom}_{prenom}.pdf
+```
+  # python3 ./elicpdf.py --csv tx.csv  -- out resultat.pdf
+```
+#### mode liste:
+- les fichiers pdf sont dans le repertoire d'execution
+```
+  # python3 ./elicpdf.py --liste licence1.pdf licence2.pdf licence3.pdf ... licencen.pdf  -- out resultat.pdf
+```
+### pdflic.py
+- toujours le meme format de fichier csv, apres le getlic.py
+qui nomme tous les fichiers de licence lic_nom_prenom.pdf
+- dans le repertoir ou sont les fichiers lic_nom_prenom.pdf
+```
+  # python3 ./pdflic.py tx.csv  resultat.pdf
+```
+ca génére des planches de 10 etiquetes a 27%, en mettant une chaine de characteres plus grande et donc lisible a 27%
+
+## verification et collect des licences
+### configuration:
 - remplacer le compte et mot de passe dans auth.ini
-## les fichiers:
+### les fichiers:
 - lic.py
     - C'est la librarie principale
     - on peut l'utilise pour rechercher 1 personne par son nom prenom ou id elicence
@@ -90,16 +104,6 @@ Fichier déplacé avec succès vers : lic_ABZKI_Arthur.pdf
 0290534 Mme ZZZZ YYYY;29/05/1970;05112 CIMES 19;31/08/2024;avec IA
 Erreur lors du déplacement du fichier : [Errno 2] No such file or directory: 'lic190534.pdf'
 ```
-
-
-# le script pour generer un pdf
-- toujours le meme format de fichier csv, apres le getlic.py
-qui nomme tous les fichiers de licence lic_nom_prenom.pdf
-- dans le repertoir ou sont les fichiers lic_nom_prenom.pdf
-```
-  # python3 ./pdflic.py tx.csv  resultat.pdf
-```
-ca génére des planches de 10 etiquetes a 27%, en mettant une chaine de characteres plus grande et donc lisible a 27%
 
 
  
