@@ -95,6 +95,7 @@ Erreur lors du déplacement du fichier : [Errno 2] No such file or directory: 'l
 # le script pour generer un pdf
 - toujours le meme format de fichier csv, apres le getlic.py
 qui nomme tous les fichiers de licence lic_nom_prenom.pdf
+- dans le repertoir ou sont les fichiers lic_nom_prenom.pdf
 ```
   # python3 ./pdflic.py tx.csv  resultat.pdf
 ```
