@@ -1,4 +1,15 @@
 # elicences
+## juste les executables
+- des versions executables ( non testes sont disponibles dans le repertoire dist, pour les executer, remplacer "python3 macommand.py" par "macommande"
+- les executables sont:
+
+- [pdflic](https://github.com/lmbzx/elicences/raw/main/dist/pdflic)
+- [lic](https://github.com/lmbzx/elicences/raw/main/dist/lic)
+- [getlic](https://github.com/lmbzx/elicences/raw/main/dist/getlic)
+- [checklic](https://github.com/lmbzx/elicences/raw/main/dist/checklic)
+  [cherchestatus](https://github.com/lmbzx/elicences/raw/main/dist/cherchestatus)
+```
+
 ## dependances:
 ```
   # pip3 install beautifullsoup4
