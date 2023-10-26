@@ -10,7 +10,6 @@
 - [checklic](https://github.com/lmbzx/elicences/raw/main/dist/checklic.exe)
 - [cherchestatus](https://github.com/lmbzx/elicences/raw/main/dist/cherchestatus.exe)
 
-- dist 
 ## version avec python
 ### dependances:
 ```
