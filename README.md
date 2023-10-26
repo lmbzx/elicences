@@ -3,11 +3,12 @@
 ## version executable windows
 - des versions executables ( non testes sont disponibles dans le repertoire dist, pour les executer, remplacer "python3 macommand.py" par "macommande"
 ### liste des fichiers
-- [pdflic](https://github.com/lmbzx/elicences/raw/main/dist/pdflic)
-- [lic](https://github.com/lmbzx/elicences/raw/main/dist/lic)
-- [getlic](https://github.com/lmbzx/elicences/raw/main/dist/getlic)
-- [checklic](https://github.com/lmbzx/elicences/raw/main/dist/checklic)
-  [cherchestatus](https://github.com/lmbzx/elicences/raw/main/dist/cherchestatus)
+- [elicpdf](https://github.com/lmbzx/elicences/raw/main/dist/elicpdf.exe)
+- [pdflic](https://github.com/lmbzx/elicences/raw/main/dist/pdflic.exe)
+- [lic](https://github.com/lmbzx/elicences/raw/main/dist/lic.exe)
+- [getlic](https://github.com/lmbzx/elicences/raw/main/dist/getlic.exe)
+- [checklic](https://github.com/lmbzx/elicences/raw/main/dist/checklic.exe)
+- [cherchestatus](https://github.com/lmbzx/elicences/raw/main/dist/cherchestatus.exe)
 
 - dist 
 ## version avec python
