@@ -2,7 +2,7 @@
 
 ## dependances:
 ```
-  # pip3 install beautifullsoup
+  # pip3 install beautifulsoup4
   # pip3 install pyPDF4
   # pip3 install reportlab
   # pip3 install PIL
