@@ -5,7 +5,7 @@
   # pip3 install beautifulsoup4
   # pip3 install pyPDF4
   # pip3 install reportlab
-  # pip3 install PIL
+  # pip3 install pillow
   # pip3 install PyMuPDF
 
 dites moi si il en manque
