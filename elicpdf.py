@@ -40,7 +40,7 @@ class licent():
       l=this.lab%this.nbpage
       #print(l)
       if this.lab>0 and l%this.nbpage==0:
-          print("showpage")
+          print("nouvelle page")
           this.cv.showPage()
       li=l%this.cols
       #0 if(l<this.lignes) else 1
