@@ -1,14 +1,23 @@
 # elicences
 
-## dependances:
+## version executable windows
+- des versions executables ( non testes sont disponibles dans le repertoire dist, pour les executer, remplacer "python3 macommand.py" par "macommande"
+### liste des fichiers
+- [pdflic](https://github.com/lmbzx/elicences/raw/main/dist/pdflic)
+- [lic](https://github.com/lmbzx/elicences/raw/main/dist/lic)
+- [getlic](https://github.com/lmbzx/elicences/raw/main/dist/getlic)
+- [checklic](https://github.com/lmbzx/elicences/raw/main/dist/checklic)
+  [cherchestatus](https://github.com/lmbzx/elicences/raw/main/dist/cherchestatus)
+
+- dist 
+## version avec python
+### dependances:
 ```
   # pip3 install beautifulsoup4
   # pip3 install pyPDF4
   # pip3 install reportlab
   # pip3 install pillow
   # pip3 install PyMuPDF
-
-dites moi si il en manque
 ```
 ## le script pour generer un pdf
 - n'utilise pas auth.ini
@@ -18,11 +27,16 @@ dites moi si il en manque
 - le fichier csv a au moins les colones Nom et Prenom, et les fichiers licence pdf s'appellent lic_{nom}_{prenom}.pdf
 ```
   # python3 ./elicpdf.py --csv tx.csv  -- out resultat.pdf
+  ou
+  # elicpdf.exe --csv tx.csv  -- out resultat.pdf
+
 ```
 #### mode liste:
 - les fichiers pdf sont dans le repertoire d'execution
 ```
   # python3 ./elicpdf.py --liste licence1.pdf licence2.pdf licence3.pdf ... licencen.pdf  -- out resultat.pdf
+  ou
+  # elicpdf.exe --liste licence1.pdf licence2.pdf licence3.pdf ... licencen.pdf  -- out resultat.pdf
 ```
 ### pdflic.py
 - toujours le meme format de fichier csv, apres le getlic.py
