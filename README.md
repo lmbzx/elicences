@@ -26,17 +26,18 @@
 #### mode csv:
 - le fichier csv a au moins les colones Nom et Prenom, et les fichiers licence pdf s'appellent lic_{nom}_{prenom}.pdf
 ```
-  # python3 ./elicpdf.py --csv tx.csv  -- out resultat.pdf
+  # python3 ./elicpdf.py csv [--massicot] fichiersortie.pdf tx.csv  
   ou
-  # elicpdf.exe --csv tx.csv  -- out resultat.pdf
+  # elicpdf.exe csv [--massicot] fichiersortie.pdf tx.csv
 
+l'option --massicot imprime en colonne pour un massicotage facile
 ```
 #### mode liste:
 - les fichiers pdf sont dans le repertoire d'execution
 ```
-  # python3 ./elicpdf.py --liste licence1.pdf licence2.pdf licence3.pdf ... licencen.pdf  -- out resultat.pdf
+  # python3 ./elicpdf.py liste resultat.pdf licence1.pdf licence2.pdf licence3.pdf ... licencen.pdf 
   ou
-  # elicpdf.exe --liste licence1.pdf licence2.pdf licence3.pdf ... licencen.pdf  -- out resultat.pdf
+  # elicpdf.exe liste resultat.pdf licence1.pdf licence2.pdf licence3.pdf ... licencen.pdf 
 ```
 ### pdflic.py
 - toujours le meme format de fichier csv, apres le getlic.py

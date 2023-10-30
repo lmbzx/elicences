@@ -20,18 +20,28 @@ def coulacoul(val):
       r=float(int(val)%256)/255.0
       return colors.Color(r,v,b,1)
 class licent():
-    def __init__(this,f,scale):
-        this.scale=scale
-        this.scale=0.27
+    def __init__(this,f,echelle=0.27,massicot=False):
+        this.scale=echelle
         this.f=f
-        this.cv = canvas.Canvas(f, pagesize=a4T)
-        this.lignes=5
-        this.cols=2
+        this.massicot=massicot
+        x=int(1/echelle)
+        y0=int(210/297/echelle)
+        y1=int(297/210/echelle)
+        if(y0*y1<x*x):
+            this.lignes=x
+            this.cols=x
+            this.pg=(a4[1],a4[0])
+            this.cv = canvas.Canvas(f, pagesize=a4)
+        else:
+            this.lignes=y1
+            this.cols=y0
+            this.pg=(a4[0],a4[1])
+            this.cv = canvas.Canvas(f, pagesize=a4T)
         this.nbpage=this.lignes*this.cols
         this.lw=a4[0]*this.scale
         this.lh=a4[1]*this.scale
-        this.offsety=(a4[1]-this.lignes*this.lw)/2
-        this.offsetx=(a4[0]-this.cols*this.lh)/2
+        this.offsety=(this.pg[1]-this.lignes*this.lw)/2
+        this.offsetx=(this.pg[0]-this.cols*this.lh)/2
         this.org=[0,0]
         this.lab=-1
 
@@ -58,7 +68,7 @@ class licent():
 
 
     def  ajoutetext(this,entry):
-      if entry["type"]!=0:
+      if 'type' not in entry or entry["type"]!=0:
         return
       c=this.cv
       lines=entry['lines']  
@@ -75,18 +85,33 @@ class licent():
            tx=span["text"]
            c.setFillColor(color)
            c.setFont(font, sz)
-           c.drawString( this.scale*pos[0]+this.org[0], this.org[1]+this.scale*(a4[1]-pos[3]+sz-9.5*this.scale*1.8), tx)
+           c.drawString( this.scale*pos[0]+this.org[0], this.org[1]+this.scale*(this.pg[1]-pos[3]+sz-9.5*this.scale*1.8), tx)
     def ajouteimage(this,entry):
-      if entry["type"]!=1:
+      if 'type' not in entry or entry["type"]!=1:
         return
       c=this.cv
       pos=entry["bbox"]
       image= PILImage.open(io.BytesIO(entry["image"]),formats=[entry["ext"]])
-      c.drawInlineImage(image, this.org[0]+this.scale*pos[0], this.scale*(a4[1]-pos[3])+this.org[1],width=this.scale*(pos[2]-pos[0]),height= this.scale*(pos[3]-pos[1]))
+      c.drawInlineImage(image, this.org[0]+this.scale*pos[0], this.scale*(this.pg[1]-pos[3])+this.org[1],width=this.scale*(pos[2]-pos[0]),height= this.scale*(pos[3]-pos[1]))
 
-def create_pdf(z,f):
-    c=licent(f,.27)
-    for b in z:
+def create_pdf(z,f,massicot=False):
+    c=licent(f,echelle=.27,massicot=massicot)
+    if massicot:
+        pos=0
+        nbpg=int((len(b)+this.nbpage-1)/this.nbpage)
+        bs=[]
+        for i in z:
+          if pos in z:
+            bz.append(z[pos])
+          else: 
+            bz.append({})
+          pos+=this.nbpage
+          if pos % nbpg ==0:
+              pos-=npg-1
+
+    else:
+        bz=z
+    for b in bz:
        c.addpage(b)
     c.save()
 
@@ -97,7 +122,7 @@ def getpage(pdf_file,pblocks):
     blocks = d["blocks"]  
     pblocks.append(blocks)
 
-def listelic(out,listefic):
+def listelic(out,listefic,massicot=False):
    pblocks=[]
    for d in listefic:
     try:
@@ -105,10 +130,11 @@ def listelic(out,listefic):
     except Exception as e:
        print(e)
        print(d)
-   create_pdf(pblocks,out)
+   create_pdf(pblocks,out,massicot=massicot)
+   print(f"done {len(d)}")
 
 
-def csvlic(out,csvfile):
+def csvlic(out,csvfile,massicot=False):
    donnees = []
 
    with open(csvfile, mode='r', encoding='ISO-8859-1') as fichier_csv:
@@ -118,25 +144,47 @@ def csvlic(out,csvfile):
        donnees.append(dict(ligne))
    ds=[]
    for e in donnees:
-     ds.append(f"lic_{e['Nom']}_{e['Prenom']}.pdf")
-   listelic(out,ds)
+       ds.append(f"lic_{e['Nom']}_{e['Prenom']}.pdf")
+   listelic(out,ds,massicot=massicot)
 
 def main():
-    parser = argparse.ArgumentParser(description='elicpdf')
-    parser.add_argument('--out', required=True, help='Fichier pdf de sortie')
-    group = parser.add_mutually_exclusive_group(required=True)
+   parser = argparse.ArgumentParser(description="Script Python avec deux sous-commandes.")
+   subparsers = parser.add_subparsers(dest="subcommand")
+   liste_parser = subparsers.add_parser("liste", help="Mode liste")
+   liste_parser.add_argument("out", help="Nom du fichier de sortie")
+   liste_parser.add_argument("licencespdf", nargs="+", help="Liste des fichiers à traiter")
+   csv_parser = subparsers.add_parser("csv", help="Mode csv")
+   csv_parser.add_argument("out", help="Nom du fichier de sortie")
+   csv_parser.add_argument("fichiercsv", help="Nom du fichier CSV de données")
+   csv_parser.add_argument("--massicot", action="store_true", help="Activer le massicot")
+   args = parser.parse_args()
 
-    group.add_argument('--liste', nargs='+', help='Liste de fichiers pdf a inclure')
-    group.add_argument('--csv', help='Fichier CSV avec au moins les colones "Nom" et "Prenom"')
+   if args.subcommand == "liste":
+        print("Mode liste selectionne.")
+        print("Fichier de sortie :", args.out)
+        print("Fichiers à traiter :", args.licencespdf)
+        listelic(args.out, args.licencespdf)
+   elif args.subcommand == "csv":
+        print("Mode csv selectionne.")
+        print("Fichier de sortie :", args.out)
+        print("Fichier CSV de donnees :", args.fichiercsv)
+        if args.massicot:
+          print("Option -massicot activée.")
+        csvlic(args.out, args.fichiercsv,args.massicot)
+   else:
+    parser.print_help()
 
-    args = parser.parse_args()
+    print(args)
+    exit
 
-    if args.liste:
+   '''
+   if args.liste:
         listelic(args.out, args.liste)
-    elif args.csv:
+   elif args.csv:
         csvlic(args.out, args.csv)
-    else:
+   else:
         print("Option non reconnue")
+   '''
 
 
 if __name__ == '__main__':
