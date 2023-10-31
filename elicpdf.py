@@ -101,17 +101,22 @@ def create_pdf(z,f,massicot=False):
     c=licent(f,echelle=.27,massicot=massicot)
     if massicot:
         pos=0
+        pos0=0
         nbpage=c.nbpage
         nbpg=int((len(z)+nbpage-1)/nbpage)
         bz=[]
-        for i in z:
-          if pos in z:
+        for i in range(0,nbpg):
+         for j in range(0,10):
+          if pos <len(z):
+            #print(f"x {pos}")
             bz.append(z[pos])
           else: 
+            #print(f"y {pos}")
             bz.append({})
-          pos+=this.nbpage
-          if pos % nbpg ==0:
-              pos-=npg-1
+          pos+=nbpg
+          if pos > nbpg*nbpage-1:
+              pos0+=1
+              pos=pos0
 
     else:
         bz=z
