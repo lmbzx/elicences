@@ -94,12 +94,16 @@ class licent():
       image= PILImage.open(io.BytesIO(entry["image"]),formats=[entry["ext"]])
       c.drawInlineImage(image, this.org[0]+this.scale*pos[0], this.scale*(this.pg[1]-pos[3])+this.org[1],width=this.scale*(pos[2]-pos[0]),height= this.scale*(pos[3]-pos[1]))
 
+    def nbpages(this):
+        return this.nbpage
+
 def create_pdf(z,f,massicot=False):
     c=licent(f,echelle=.27,massicot=massicot)
     if massicot:
         pos=0
-        nbpg=int((len(b)+this.nbpage-1)/this.nbpage)
-        bs=[]
+        nbpage=c.nbpage
+        nbpg=int((len(z)+nbpage-1)/nbpage)
+        bz=[]
         for i in z:
           if pos in z:
             bz.append(z[pos])
@@ -152,17 +156,17 @@ def main():
    subparsers = parser.add_subparsers(dest="subcommand")
    liste_parser = subparsers.add_parser("liste", help="Mode liste")
    liste_parser.add_argument("out", help="Nom du fichier de sortie")
-   liste_parser.add_argument("licencespdf", nargs="+", help="Liste des fichiers à traiter")
+   liste_parser.add_argument("licencespdf", nargs="+", help="Liste des fichiers a traiter")
    csv_parser = subparsers.add_parser("csv", help="Mode csv")
    csv_parser.add_argument("out", help="Nom du fichier de sortie")
-   csv_parser.add_argument("fichiercsv", help="Nom du fichier CSV de données")
+   csv_parser.add_argument("fichiercsv", help="Nom du fichier CSV de donnees")
    csv_parser.add_argument("--massicot", action="store_true", help="Activer le massicot")
    args = parser.parse_args()
 
    if args.subcommand == "liste":
         print("Mode liste selectionne.")
         print("Fichier de sortie :", args.out)
-        print("Fichiers à traiter :", args.licencespdf)
+        print("Fichiers a traiter :", args.licencespdf)
         listelic(args.out, args.licencespdf)
    elif args.subcommand == "csv":
         print("Mode csv selectionne.")
