@@ -3,6 +3,7 @@
 ## version executable windows
 - des versions executables ( non testes sont disponibles dans le repertoire dist, pour les executer, remplacer "python3 macommand.py" par "macommande"
 ### liste des fichiers
+- [reduitelic](https://github.com/lmbzx/elicences/raw/main/dist/reduitelic.exe)
 - [elicpdf](https://github.com/lmbzx/elicences/raw/main/dist/elicpdf.exe)
 - [pdflic](https://github.com/lmbzx/elicences/raw/main/dist/pdflic.exe)
 - [lic](https://github.com/lmbzx/elicences/raw/main/dist/lic.exe)
@@ -18,9 +19,18 @@
   # pip3 install reportlab
   # pip3 install pillow
   # pip3 install PyMuPDF
+  # pip3 install tkinter
 ```
-## le script pour generer un pdf
+## les script pour generer un pdf
 - n'utilise pas auth.ini
+### reduitelic.py/reduitelic.exe avec interface plus facile
+
+```
+# python3 reduitelic.py
+ou
+ click sur reduitelic.exe
+`
+```
 ### elicpdf.py
 - 2 modes, csv ou liste
 #### mode csv:

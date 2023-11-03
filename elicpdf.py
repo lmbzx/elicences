@@ -19,8 +19,9 @@ def coulacoul(val):
       val=val/256
       r=float(int(val)%256)/255.0
       return colors.Color(r,v,b,1)
+
 class licent():
-    def __init__(this,f,echelle=0.27,massicot=False):
+    def __init__(this,f,echelle=0.27,taillef=2,massicot=False):
         this.scale=echelle
         this.f=f
         this.massicot=massicot
@@ -44,6 +45,7 @@ class licent():
         this.offsetx=(this.pg[0]-this.cols*this.lh)/2
         this.org=[0,0]
         this.lab=-1
+        this.taillef=taillef
 
     def addpage(this,b):
       this.lab=this.lab+1
@@ -81,7 +83,7 @@ class licent():
            color=coulacoul(span["color"]  )
            font=span["font"]
            org=span["origin"]
-           sz=span["size"]*2*this.scale
+           sz=span["size"]*this.taillef*this.scale
            tx=span["text"]
            c.setFillColor(color)
            c.setFont(font, sz)
@@ -97,8 +99,8 @@ class licent():
     def nbpages(this):
         return this.nbpage
 
-def create_pdf(z,f,massicot=False):
-    c=licent(f,echelle=.27,massicot=massicot)
+def create_pdf(z,f,massicot=False,taillef=2,echelle=0.27):
+    c=licent(f,echelle=echelle,massicot=massicot,taillef=taillef)
     if massicot:
         pos=0
         pos0=0
@@ -131,7 +133,7 @@ def getpage(pdf_file,pblocks):
     blocks = d["blocks"]  
     pblocks.append(blocks)
 
-def listelic(out,listefic,massicot=False):
+def listelic(out,listefic,massicot=False,taillef=2):
    pblocks=[]
    for d in listefic:
     try:
@@ -139,7 +141,7 @@ def listelic(out,listefic,massicot=False):
     except Exception as e:
        print(e)
        print(d)
-   create_pdf(pblocks,out,massicot=massicot)
+   create_pdf(pblocks,out,massicot=massicot,taillef=taillef)
    print(f"done {len(d)}")
 
 
