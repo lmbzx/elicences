@@ -20,7 +20,7 @@ def process_and_save():
     input_file = input_file_entry.get()
     output_file = output_file_entry.get()
     process_pdf(input_file, output_file)
-    result_label.config(text="Fichier traité et sauvegardé avec succès.")
+    result_label.config(text="Licence reduite et sauvegardée avec succès.")
 
 def quit():
     root.destroy()
@@ -33,24 +33,24 @@ default_font.configure(size=16)
 root.option_add("*Font", default_font)
 
 
-root.title("Traitement PDF")
+root.title("Reduit elicence PDF")
 
 # Ajoutez des éléments d'interface utilisateur pour sélectionner les fichiers d'entrée et de sortie
-input_file_label = tk.Label(root, text="Fichier d'entrée:")
+input_file_label = tk.Label(root, text="Fichier licence d'entrée:")
 input_file_label.pack()
 input_file_entry = tk.Entry(root)
 input_file_entry.pack()
 input_file_button = tk.Button(root, text="Sélectionner le fichier d'entrée", command=select_input_file)
 input_file_button.pack()
 
-output_file_label = tk.Label(root, text="Fichier de sortie:")
+output_file_label = tk.Label(root, text="Fichier licence de sortie:")
 output_file_label.pack()
 output_file_entry = tk.Entry(root)
 output_file_entry.pack()
 output_file_button = tk.Button(root, text="Sélectionner le fichier de sortie", command=select_output_file)
 output_file_button.pack()
 
-process_button = tk.Button(root, text="Traitement PDF et sauvegarde", command=process_and_save)
+process_button = tk.Button(root, text="Reduit et sauvegarde", command=process_and_save)
 process_button.pack()
 
 quit_button = tk.Button(root, text="Sortie", command=quit)
