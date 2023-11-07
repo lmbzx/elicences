@@ -7,7 +7,7 @@ def process_pdf(input_file, output_file):
     listelic(output_file,input_file.split())
 
 def select_input_file():
-    input_file = filedialog.askopenfilename(filetypes=[("PDF files", "*.pdf")])
+    input_file = filedialog.askopenfilenames(filetypes=[("PDF files", "*.pdf")])
     input_file_entry.delete(0, tk.END)
     input_file_entry.insert(0, input_file)
 
@@ -40,7 +40,7 @@ input_file_label = tk.Label(root, text="Fichier licence d'entrée:")
 input_file_label.pack()
 input_file_entry = tk.Entry(root)
 input_file_entry.pack()
-input_file_button = tk.Button(root, text="Sélectionner le fichier d'entrée", command=select_input_file)
+input_file_button = tk.Button(root, text="Sélectionner les fichier d'entrée", command=select_input_file)
 input_file_button.pack()
 
 output_file_label = tk.Label(root, text="Fichier licence de sortie:")
