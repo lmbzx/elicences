@@ -145,9 +145,10 @@ def listelic(out,listefic,massicot=False,taillef=2):
    print(f"done {len(d)}")
 
 
-def csvlic(out,csvfile,massicot=False):
+def csvlic(out,csvfile,workdir="",massicot=False):
    donnees = []
 
+   print(workdir)
    with open(csvfile, mode='r', encoding='ISO-8859-1') as fichier_csv:
      lecteur_csv = csv.DictReader(fichier_csv, delimiter=';')
 
@@ -155,7 +156,7 @@ def csvlic(out,csvfile,massicot=False):
        donnees.append(dict(ligne))
    ds=[]
    for e in donnees:
-       ds.append(f"lic_{e['Nom']}_{e['Prenom']}.pdf")
+       ds.append(os.path.join(workdir,f"lic_{e['Nom']}_{e['Prenom']}.pdf"))
    listelic(out,ds,massicot=massicot)
 
 def main():

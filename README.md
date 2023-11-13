@@ -3,6 +3,7 @@
 ## version executable windows
 - des versions executables ( non testes sont disponibles dans le repertoire dist, pour les executer, remplacer "python3 macommand.py" par "macommande"
 ### liste des fichiers
+- [reduitelic2](https://github.com/lmbzx/elicences/raw/main/dist/reduitelic2.exe)
 - [reduitelic](https://github.com/lmbzx/elicences/raw/main/dist/reduitelic.exe)
 - [elicpdf](https://github.com/lmbzx/elicences/raw/main/dist/elicpdf.exe)
 - [pdflic](https://github.com/lmbzx/elicences/raw/main/dist/pdflic.exe)
@@ -24,7 +25,11 @@
 ## les script pour generer un pdf
 - n'utilise pas auth.ini
 ### reduitelic.py/reduitelic.exe avec interface plus facile
-
+- reduitelic2 est une version plus complete pouvant prendre en entree un fichier csv 
+```
+     "numelic;Genre;Nom;Prenom;dn;clubnum;club"
+```
+- pour executer reduitelic:  ( pareil pour reduitelic2)
 ```
 # python3 reduitelic.py
 ou
