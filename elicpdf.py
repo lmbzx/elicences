@@ -1,7 +1,7 @@
 import argparse
 import csv 
 import fitz 
-#import sys
+import sys
 #import pprint
 from PIL import Image as PILImage
 
@@ -20,6 +20,9 @@ def coulacoul(val):
       r=float(int(val)%256)/255.0
       return colors.Color(r,v,b,1)
 
+def logit(message):
+    print(message)
+    sys.stdout.flush()
 class licent():
     def __init__(this,f,echelle=0.27,taillef=2,massicot=False):
         this.scale=echelle
@@ -47,12 +50,12 @@ class licent():
         this.lab=-1
         this.taillef=taillef
 
-    def addpage(this,b):
+    def addpage(this,b,dconsole=logit):
       this.lab=this.lab+1
       l=this.lab%this.nbpage
       #print(l)
       if this.lab>0 and l%this.nbpage==0:
-          print("nouvelle page")
+          dconsole(f"\nnouvelle page {int(this.lab/this.nbpage)}\n")
           this.cv.showPage()
       li=l%this.cols
       #0 if(l<this.lignes) else 1
@@ -99,7 +102,7 @@ class licent():
     def nbpages(this):
         return this.nbpage
 
-def create_pdf(z,f,massicot=False,taillef=2,echelle=0.27):
+def create_pdf(z,f,massicot=False,taillef=2,echelle=0.27,dconsole=logit):
     c=licent(f,echelle=echelle,massicot=massicot,taillef=taillef)
     if massicot:
         pos=0
@@ -122,33 +125,39 @@ def create_pdf(z,f,massicot=False,taillef=2,echelle=0.27):
 
     else:
         bz=z
+    ix=0
     for b in bz:
-       c.addpage(b)
+       c.addpage(b,dconsole=dconsole)
+       dconsole(f"{int(ix%10)}")
+       ix=ix+1
+    dconsole("\nSauve le fichier, ca peut prendre du temps\n")
     c.save()
+    dconsole("Fichier sauvé\n")
 
-def getpage(pdf_file,pblocks):
+def getpage(pdf_file,pblocks,dconsole=logit):
+   dconsole(f"lit fichier {pdf_file}\n")
    pdf_document = fitz.open(pdf_file)
    for page in pdf_document:
     d = page.get_text("dict")
     blocks = d["blocks"]  
     pblocks.append(blocks)
 
-def listelic(out,listefic,massicot=False,taillef=2):
+def listelic(out,listefic,massicot=False,taillef=2,dconsole=logit):
    pblocks=[]
+   dconsole(f"ajoute les fichiers pdf\n")
    for d in listefic:
     try:
-       getpage(d,pblocks)
+       getpage(d,pblocks,dconsole=dconsole)
     except Exception as e:
-       print(e)
-       print(d)
-   create_pdf(pblocks,out,massicot=massicot,taillef=taillef)
-   print(f"done {len(d)}")
+       dconsole(f"{e}\n{d}\n")
+   create_pdf(pblocks,out,massicot=massicot,taillef=taillef,dconsole=dconsole)
+   dconsole(f"done {len(d)}\n")
 
 
-def csvlic(out,csvfile,workdir="",massicot=False):
+def csvlic(out,csvfile,workdir="",massicot=False,dconsole=logit):
    donnees = []
 
-   print(workdir)
+   dconsole(f"charge le fichier {csvfile}\n")
    with open(csvfile, mode='r', encoding='ISO-8859-1') as fichier_csv:
      lecteur_csv = csv.DictReader(fichier_csv, delimiter=';')
 
@@ -156,8 +165,11 @@ def csvlic(out,csvfile,workdir="",massicot=False):
        donnees.append(dict(ligne))
    ds=[]
    for e in donnees:
-       ds.append(os.path.join(workdir,f"lic_{e['Nom']}_{e['Prenom']}.pdf"))
-   listelic(out,ds,massicot=massicot)
+       licfile=os.path.join(workdir,f"lic_{e['Nom']}_{e['Prenom']}.pdf")
+       ds.append(licfile)
+       dconsole(f"ajoute {licfile}\n")
+
+   listelic(out,ds,massicot=massicot,dconsole=dconsole)
 
 def main():
    parser = argparse.ArgumentParser(description="Script Python avec deux sous-commandes.")
